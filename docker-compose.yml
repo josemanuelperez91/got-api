@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: ./docker
+    image: got-api
+    container_name: got-api-app
+    ports: 
+      - "8080:80"
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+  db:
+    image: mysql
+    container_name: got-api-db
+    environment:
+      MYSQL_DATABASE: gotdb
+      MYSQL_ROOT_PASSWORD: root
