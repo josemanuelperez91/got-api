@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: ./docker
-    image: got-api
+    image: php-got-api
     container_name: got-api-app
     ports: 
       - "8080:80"
@@ -14,5 +14,11 @@ services:
     image: mysql
     container_name: got-api-db
     environment:
-      MYSQL_DATABASE: gotdb
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    # volumes:
+    #   - ./database/seeds/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - default
