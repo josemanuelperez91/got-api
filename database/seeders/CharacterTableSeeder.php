@@ -30,12 +30,12 @@ class CharacterTableSeeder extends Seeder
                 if (is_array($character_data)) {
                     if ($character_key === "actors") {
                         foreach ($character_data as $actor_data) {
-                            $actor_data['seasonsActive'] = implode(', ', $actor_data['seasonsActive']);
+                            $actor_data['seasonsActive'] = json_encode($actor_data['seasonsActive']);
                             $actors[] = $actor_data;
                         }
                         unset($got_character['actors']);
                     } else {
-                        $got_character[$character_key] = implode(', ', $character_data);
+                        $got_character[$character_key] = json_encode($character_data);
                     }
                 }
             }

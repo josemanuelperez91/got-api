@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'seasonsActive' => 'array'
+    ];
+    protected $hidden = [
+        'characterId',
+        'created_at',
+        'updated_at'
+    ];
 }
