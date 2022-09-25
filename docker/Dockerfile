@@ -10,4 +10,7 @@ RUN apt-get update && \
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
