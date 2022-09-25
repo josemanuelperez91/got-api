@@ -21,39 +21,38 @@ class CharacterTableSeeder extends Seeder
         DB::table('actors')->delete();
         DB::table('characters')->delete();
 
-        $got_characters_json = File::get("database/seeds/got-characters.json");
-        $got_characters = json_decode($got_characters_json, true)['characters'];
+        $characters = json_decode(File::get("database/seeds/got-characters.json"), true)['characters'];
 
-        foreach($got_characters as $got_character) {
+        foreach($characters as $character) {
             $actors = [];
-            foreach($got_character as $character_key => &$character_data) {
-                if (is_array($character_data)) {
-                    if ($character_key === "actors") {
-                        foreach ($character_data as $actor_data) {
-                            $actor_data['seasonsActive'] = json_encode($actor_data['seasonsActive']);
-                            $actors[] = $actor_data;
+            foreach($character as $characterKey => &$characterData) {
+                if (is_array($characterData)) {
+                    if ($characterKey === "actors") {
+                        foreach ($characterData as $actorData) {
+                            $actorData['seasonsActive'] = json_encode($actorData['seasonsActive']);
+                            $actors[] = $actorData;
                         }
-                        unset($got_character['actors']);
+                        unset($character['actors']);
                     } else {
-                        $got_character[$character_key] = json_encode($character_data);
+                        $character[$characterKey] = json_encode($characterData);
                     }
                 }
             }
 
-            if(isset($got_character['actorName'])) {
-                $actors[0]['actorName'] = $got_character['actorName'];
-                unset($got_character['actorName']);
+            if(isset($character['actorName'])) {
+                $actors[0]['actorName'] = $character['actorName'];
+                unset($character['actorName']);
             }
 
-            if (isset($got_character['actorLink'])) {
-                $actors[0]['actorLink'] = $got_character['actorLink'];
-                unset($got_character['actorLink']);
+            if (isset($character['actorLink'])) {
+                $actors[0]['actorLink'] = $character['actorLink'];
+                unset($character['actorLink']);
             }
 
-            $character_id = Character::create($got_character)->id;
+            $characterID = Character::create($character)->id;
 
             foreach($actors as $actor) {
-                $actor['characterID'] = $character_id;
+                $actor['characterID'] = $characterID;
                 Actor::create($actor);
             }
         }

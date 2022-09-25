@@ -24,6 +24,8 @@ class Character extends Model
         'abductedBy' => 'array',
         'abducted' => 'array',
         'sibling' => 'array',
+        'royal' => 'boolean',
+        'kingsguard' => 'boolean'
     ];
 
     protected $hidden = [

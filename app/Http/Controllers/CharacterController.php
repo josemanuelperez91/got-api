@@ -69,6 +69,5 @@ class CharacterController extends Controller
     public function search(String $query)
     {
         return Character::query()->where('characterName', 'LIKE', "%$query%")->get();
-        //return Character::search($search)->get();
     }
 }
