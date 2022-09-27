@@ -61,5 +61,11 @@ class ActorController extends Controller
     public function destroy(Actor $actor)
     {
         $actor->delete();
-        return response()->json(['success' => true], 200);    }
+        return response()->json(['success' => true], 200);    
+    }
+
+    public function search(String $query)
+    {
+        return Actor::query()->where('actorName', 'LIKE', "%$query%")->get();
+    }
 }

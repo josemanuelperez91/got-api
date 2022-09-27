@@ -18,4 +18,5 @@ use App\Models\Character;
 */
 Route::get('characters/search/{query}', [CharacterController::class, 'search']);
 Route::apiResource('characters', CharacterController::class);
+Route::get('actors/search/{query}', [ActorController::class, 'search']);
 Route::apiResource('actors', ActorController::class);
