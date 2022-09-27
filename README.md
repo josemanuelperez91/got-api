@@ -57,14 +57,55 @@ Returns the specific character data associated with id parameter.
 ___
 #### PUT
 
-Allows to update the specific character. At least a JSON body with one parameter is required.
+Allows to update the specific character. At least a JSON body with one data-related parameter is required.
 ___
 #### DELETE
 
-DELETES the specific character data associated with {id} parameter.
+DELETES the specific character data associated with {id} argument.
 
 ### /api/characters/search/{string}
 
 Ex. `http://localhost:8080/api/characters/search/arya`
 
 Searchs for a character that contains in its characterName the {string} value.
+
+### /api/actors
+
+Ex. `http://localhost:8080/api/actors`
+
+#### GET
+
+Returns a complete list of actors stored in the database, with their associated actors.
+
+___
+
+#### POST
+Allows to save a new actor. At least a JSON body the parameter **actorName**  and its associated **characterID** are required.
+
+```json
+{
+"actorName": "test",
+"characterID": 1
+}
+```
+### /api/actors/{id}
+
+Ex. `http://localhost:8080/api/actors/1`
+
+#### GET
+
+Returns the specific actor data associated with id parameter.
+___
+#### PUT
+
+Allows to update the specific actor. At least a JSON body with one data-related parameter is required.
+___
+#### DELETE
+
+DELETES the specific actor data associated with {id} argument.
+
+### /api/actors/search/{string}
+
+Ex. `http://localhost:8080/api/actors/search/Maisie`
+
+Searchs for a actor that contains in its actorName the {string} value.
