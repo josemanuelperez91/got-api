@@ -25,23 +25,23 @@ class Character extends Model
         'abducted' => 'array',
         'sibling' => 'array',
         'royal' => 'boolean',
-        'kingsguard' => 'boolean'
+        'kingsguard' => 'boolean',
     ];
 
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     protected $appends = ['actors'];
 
-    protected $guarded = [];  
+    protected $guarded = [];
 
     public function getActorsAttribute()
-     {
+    {
         return $this->actors()->get();
-     }
-    
+    }
+
     public function Actors()
     {
         return $this->hasMany(Actor::class, 'characterId');

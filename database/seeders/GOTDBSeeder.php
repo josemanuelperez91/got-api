@@ -9,7 +9,7 @@ use App\Models\Character;
 use App\Models\Actor;
 use PHPUnit\Framework\Error;
 
-class CharacterTableSeeder extends Seeder
+class GOTDBSeeder extends Seeder
 {
     /**
      * Run the database seeds.
