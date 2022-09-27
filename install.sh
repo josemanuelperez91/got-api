@@ -12,7 +12,9 @@ docker-compose up -d
 sleep 3
 echo -e "${BOLDMAGENTA}Installing GOT-API dependencies${ENDCOLOR}"
 docker-compose exec app composer install
-sleep 3
+sleep 6
+echo -e "${BOLDMAGENTA}Fixing permissions${ENDCOLOR}"
+docker-compose exec app chown -R www-data:www-data storage/
 echo -e "${BOLDMAGENTA}Seeding GOT DB${ENDCOLOR}"
 docker-compose exec app php artisan migrate
 docker-compose exec app php artisan db:seed
